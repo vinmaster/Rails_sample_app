@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       sign_in @user
       flash[:success] = "Profile updated"
@@ -63,6 +63,6 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-      redirect_to root_path unless current_user.admin?
+      redirect_to root_path unless (!current_user.nil? && current_user.admin?)
     end
 end
